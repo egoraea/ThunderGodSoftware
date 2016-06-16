@@ -24,8 +24,8 @@ namespace DiscGolfEventDirectory.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
 			LoadApplication (new DiscGolfEventDirectory.App ());
-
-			return base.FinishedLaunching (app, options);
+            Xamarin.FormsMaps.Init();
+            return base.FinishedLaunching (app, options);
 		}
 	}
 }

@@ -11,27 +11,36 @@ namespace DiscGolfEventDirectory
     {
         public EventItemCell()
         {
-            var label = new Label
+            var nameLabel = new Label
             {
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.StartAndExpand
             };
 
-            label.SetBinding(Label.TextProperty, "Name");
-            var tick = new Image
+            nameLabel.SetBinding(Label.TextProperty, "Name");
+
+            var dateLabel = new Label
             {
-                Source = FileImageSource.FromFile("check.png"),
-                HorizontalOptions = LayoutOptions.End
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalOptions = LayoutOptions.StartAndExpand
             };
 
-            tick.SetBinding(Image.IsVisibleProperty, "Done");
+            dateLabel.SetBinding(Label.TextProperty, "Date");
+
+            var addrLabel = new Label
+            {
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalOptions = LayoutOptions.StartAndExpand
+            };
+
+            addrLabel.SetBinding(Label.TextProperty, "Address");
 
             var layout = new StackLayout
             {
                 Padding = new Thickness(20, 0, 20, 0),
                 Orientation = StackOrientation.Horizontal,
                 HorizontalOptions = LayoutOptions.StartAndExpand,
-                Children = { label, tick }
+                Children = { nameLabel,dateLabel,addrLabel }
             };
 
             View = layout;

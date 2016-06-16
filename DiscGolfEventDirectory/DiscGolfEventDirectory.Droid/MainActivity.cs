@@ -17,7 +17,9 @@ namespace DiscGolfEventDirectory.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-			LoadApplication (new DiscGolfEventDirectory.App ());
+            Xamarin.FormsMaps.Init(this, bundle);
+            //hello
+            LoadApplication(new DiscGolfEventDirectory.App ());
 		}
 	}
 }
