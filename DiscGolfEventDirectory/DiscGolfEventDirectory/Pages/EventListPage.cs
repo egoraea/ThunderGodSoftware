@@ -46,7 +46,7 @@ namespace DiscGolfEventDirectory
             ToolbarItem tbi = null;
             if (Device.OS == TargetPlatform.iOS)
             {
-                tbi = new ToolbarItem("+", null, () => {s
+                tbi = new ToolbarItem("+", null, () => {
                     var eventItem = new EventItem();
                     var eventPage = new EventDetailsPage();
                     eventPage.BindingContext = eventItem;
