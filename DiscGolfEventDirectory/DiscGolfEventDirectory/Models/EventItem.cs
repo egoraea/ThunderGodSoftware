@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms.Maps;
 //using SQLite;
 
 namespace DiscGolfEventDirectory
@@ -21,6 +22,9 @@ namespace DiscGolfEventDirectory
 
         public string Address { get; set; }
 
+        public Position Coordinates { get; set; }
+
+        public double Distance { get; set; }
         public string Information { get; set; }
     }
 }

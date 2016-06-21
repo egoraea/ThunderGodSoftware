@@ -19,15 +19,15 @@ namespace DiscGolfEventDirectory
 
             listView = new ListView
             {
-                RowHeight = 40,
+                RowHeight = 60,
                 ItemTemplate = new DataTemplate(typeof(EventItemCell))
             };
 
             listView.ItemsSource = new EventItem[] {
                             new EventItem { Name = "Buy pears`",Address = "123 Apple STreet", Date
-                             = new DateTime(1993,12,12),Information= "You buy pears with your discs", Type = "Mini"},
+                             = new DateTime(1993,12,12),Information= "You buy pears with your discs", Type = "Mini", Distance = 3.4},
                             new EventItem { Name = "Buy not pears`",Address = "123 Apple STreet", Date
-                             = new DateTime(1993,12,12),Information= "You buy pears with your discs", Type = "Mini"}
+                             = new DateTime(1993,12,12),Information= "You buy pears with your discs", Type = "Mini", Distance = 4.3}
                         };
 
             listView.ItemSelected += (sender, e) => {
