@@ -52,7 +52,7 @@ namespace DiscGolfEventDirectory
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
             
-            distLabel.SetBinding(Label.TextProperty, "Distance", stringFormat: "{0}");
+            distLabel.SetBinding(Label.TextProperty, "Distance", stringFormat: "{0:F1}");
 
             var distLayout = new StackLayout {
                 Padding = new Thickness(20, 0, 20, 0),

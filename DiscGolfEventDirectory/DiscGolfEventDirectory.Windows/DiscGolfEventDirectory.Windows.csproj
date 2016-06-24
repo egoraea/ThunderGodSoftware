@@ -137,6 +137,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK">
+      <HintPath>..\..\packages\AWSSDK.2.3.55.0\lib\windows8\AWSSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Geolocator">
+      <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.4\lib\win8\Plugin.Geolocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugin.Geolocator.3.0.4\lib\win8\Plugin.Geolocator.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.2.0.45\lib\win81\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>

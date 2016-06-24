@@ -17,6 +17,21 @@ namespace DiscGolfEventDirectory.Droid
     {
         public Position getCurrentLocation()
         {
+            /*_locationManager = (LocationManager)GetSystemService(LocationService);
+            Criteria criteriaForLocationService = new Criteria
+            {
+                Accuracy = Accuracy.Fine
+            };
+            IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
+
+            if (acceptableLocationProviders.Any())
+            {
+                _locationProvider = acceptableLocationProviders.First();
+            }
+            else
+            {
+                _locationProvider = string.Empty;
+            }*/
             throw new NotImplementedException();
         }
 

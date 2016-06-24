@@ -6,7 +6,7 @@ using Xamarin.Forms.Maps;
 
 namespace DiscGolfEventDirectory
 {
-    class EventItem
+    class EventItem:IComparable
     {
         public EventItem()
         {
@@ -26,5 +26,14 @@ namespace DiscGolfEventDirectory
 
         public double Distance { get; set; }
         public string Information { get; set; }
+
+        public int CompareTo(Object obj)
+        {
+
+            EventItem e = (EventItem)obj;
+            if(this.Distance > e.Distance)
+                return 1;
+            return -1;
+        }
     }
 }
