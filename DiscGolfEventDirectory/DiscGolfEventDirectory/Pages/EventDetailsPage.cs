@@ -14,7 +14,7 @@ namespace DiscGolfEventDirectory
 		{
             Geocoder geo = new Geocoder();
             var location = Location();
-            var eventMap = new Map(new MapSpan(new Position(0,0), 360, 360) );
+            var eventMap = new Map(new MapSpan(new Position(57,62), 360, 360) );
             eventMap.MapType = MapType.Street;
 
             this.SetBinding(ContentPage.TitleProperty, "Name");
@@ -38,6 +38,7 @@ namespace DiscGolfEventDirectory
             infoDetails.SetBinding(Label.TextProperty, "Information");
             Content = new StackLayout {
 				Children = {
+                    eventMap,
 					nameLabel,nameDetails,
                     typeLabel,typeDetails,
                     dataLabel,dataDetails,

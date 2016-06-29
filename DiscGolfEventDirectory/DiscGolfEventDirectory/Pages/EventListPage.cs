@@ -47,7 +47,7 @@ namespace DiscGolfEventDirectory
                 Address = "123 Apple STreet",
                 Date = new DateTime(1993, 12, 12),
                 Information = "You buy pears with your discs",
-                Type = "Mini",
+                Type = "mini.png",
                 Distance = 3.4,
                 Coordinates = new Position(32.2, 45.0)
             });
@@ -57,7 +57,7 @@ namespace DiscGolfEventDirectory
                 Address = "123 Apple STreet",
                 Date = new DateTime(1993, 12, 12),
                 Information = "You buy pears with your discs",
-                Type = "Mini",
+                Type = "league.png",
                 Distance = 4.3,
                 Coordinates = new Position(52.2, 35.0)
             });

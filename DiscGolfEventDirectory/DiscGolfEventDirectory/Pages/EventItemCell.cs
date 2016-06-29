@@ -38,6 +38,14 @@ namespace DiscGolfEventDirectory
 
             addrLabel.SetBinding(Label.TextProperty, "Address");
 
+            var iconLabel = new Image
+            {
+                HeightRequest = 60,
+                WidthRequest = 60
+            };
+
+            iconLabel.SetBinding(Image.SourceProperty, "Type");
+
             var leftLayout = new StackLayout
             {
                 Padding = new Thickness(0, 10, 20, 10),
@@ -66,7 +74,7 @@ namespace DiscGolfEventDirectory
             {
                 Padding = new Thickness(20, 0, 20, 0),
                 Orientation = StackOrientation.Horizontal,
-                Children = { leftLayout, distLayout }
+                Children = { iconLabel, leftLayout, distLayout }
             };
             View = layout;
         }

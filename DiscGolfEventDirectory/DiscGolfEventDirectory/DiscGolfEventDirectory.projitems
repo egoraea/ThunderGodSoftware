@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventDetailsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventListPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\LoginPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\SettingPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\TestPage.cs" />
   </ItemGroup>
   <ItemGroup>
