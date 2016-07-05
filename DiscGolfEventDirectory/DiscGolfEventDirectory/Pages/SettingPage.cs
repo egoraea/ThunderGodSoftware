@@ -5,7 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace DiscGolfEventDirectory.Pages
+namespace DiscGolfEventDirectory
 {
 	public class SettingPage : ContentPage
 	{

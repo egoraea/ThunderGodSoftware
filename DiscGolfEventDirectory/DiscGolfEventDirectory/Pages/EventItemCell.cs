@@ -41,17 +41,21 @@ namespace DiscGolfEventDirectory
             var iconLabel = new Image
             {
                 HeightRequest = 60,
-                WidthRequest = 60
+                WidthRequest = 60,
+                HorizontalOptions = LayoutOptions.Start,
+                Source = "league.png",
+                IsVisible = true,
+                
             };
 
-            iconLabel.SetBinding(Image.SourceProperty, "Type");
+            //iconLabel.SetBinding(Image.SourceProperty, "Type".ToUpper());
 
             var leftLayout = new StackLayout
             {
                 Padding = new Thickness(0, 10, 20, 10),
                 Orientation = StackOrientation.Vertical,
                 HorizontalOptions = LayoutOptions.StartAndExpand,
-                Children = { nameLabel,dateLabel,addrLabel }
+                Children = { nameLabel,dateLabel,addrLabel },
             };
 
             var distLabel = new Label
@@ -72,7 +76,7 @@ namespace DiscGolfEventDirectory
 
             var layout = new StackLayout
             {
-                Padding = new Thickness(20, 0, 20, 0),
+                Padding = new Thickness(0, 0, 0, 0),
                 Orientation = StackOrientation.Horizontal,
                 Children = { iconLabel, leftLayout, distLayout }
             };

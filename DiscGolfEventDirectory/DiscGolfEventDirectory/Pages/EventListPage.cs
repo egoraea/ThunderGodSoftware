@@ -74,6 +74,7 @@ namespace DiscGolfEventDirectory
                 var eventDetailsPage = new EventDetailsPage();
                 eventDetailsPage.BindingContext = eventItem;
                 Navigation.PushAsync(eventDetailsPage);
+                ((ListView)sender).SelectedItem = null;
             };
 
             var layout = new StackLayout();
@@ -82,28 +83,30 @@ namespace DiscGolfEventDirectory
             layout.VerticalOptions = LayoutOptions.FillAndExpand;
             Content = layout;
 
-            ToolbarItem tbi = null;
+            ToolbarItem settings = null;
+            ToolbarItem search = null;
             if (Device.OS == TargetPlatform.iOS)
             {
-                tbi = new ToolbarItem("+", null, () => {
-                    var eventItem = new EventItem();
-                    var eventPage = new EventDetailsPage();
-                    eventPage.BindingContext = eventItem;
-                    Navigation.PushAsync(eventPage);
+                settings = new ToolbarItem("Settings", null, () => {
+                    var settingPage = new SettingPage();
+                    Navigation.PushAsync(settingPage);
                 }, 0, 0);
             }
             if (Device.OS == TargetPlatform.Android)
             { // BUG: Android doesn't support the icon being null
-                tbi = new ToolbarItem("+", "plus", () => {
-                    var eventItem = new EventItem();
-                    var eventPage = new EventDetailsPage();
-                    eventPage.BindingContext = eventItem;
-                    Navigation.PushAsync(eventPage);
+                settings = new ToolbarItem("Settings", "setting", () => {
+                    var settingPage = new SettingPage();
+                    Navigation.PushAsync(settingPage);
+                }, 0, 0);
+                search = new ToolbarItem("Search", "setting", () => {
+                    var settingPage = new SettingPage();
+                    Navigation.PushAsync(settingPage);
                 }, 0, 0);
             }
 
+            ToolbarItems.Add(search);
 
-            ToolbarItems.Add(tbi);
+            ToolbarItems.Add(settings);
 
         }
         public async Task<Position> getLocation()
