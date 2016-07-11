@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Plugin.Geolocator;
+using Amazon.DynamoDBv2;
 
 namespace DiscGolfEventDirectory
 {
@@ -39,7 +37,7 @@ namespace DiscGolfEventDirectory
             listView = new ListView
             {
                 RowHeight = 60,
-                ItemTemplate = new DataTemplate(typeof(EventItemCell))
+                //ItemTemplate = new DataTemplate(typeof(EventItemCell))
             };
             events.Add(new EventItem
             {
@@ -70,11 +68,14 @@ namespace DiscGolfEventDirectory
             listView.ItemsSource = null;
             listView.ItemsSource = events;
             listView.ItemSelected += (sender, e) => {
-                var eventItem = (EventItem)e.SelectedItem;
-                var eventDetailsPage = new EventDetailsPage();
-                eventDetailsPage.BindingContext = eventItem;
-                Navigation.PushAsync(eventDetailsPage);
-                ((ListView)sender).SelectedItem = null;
+                if (e.SelectedItem != null)
+                {
+                    var eventItem = (EventItem)e.SelectedItem;
+                    var eventDetailsPage = new EventDetailsPage();
+                    eventDetailsPage.BindingContext = eventItem;
+                    Navigation.PushAsync(eventDetailsPage);
+                    ((ListView)sender).SelectedItem = null;
+                }
             };
 
             var layout = new StackLayout();
@@ -134,5 +135,6 @@ namespace DiscGolfEventDirectory
 
             return 6378137 * d/ 1609.34;
         }
+
     }
 }
