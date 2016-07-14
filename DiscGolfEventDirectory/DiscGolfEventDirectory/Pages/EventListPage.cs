@@ -11,7 +11,7 @@ namespace DiscGolfEventDirectory
 	public class EventListPage : ContentPage
 	{
 
-    ListView listView;
+    EventListView listView;
         public EventListPage ()
 		{
             Title = "Events";
@@ -34,11 +34,7 @@ namespace DiscGolfEventDirectory
 
             NavigationPage.SetHasNavigationBar(this, true);
 
-            listView = new ListView
-            {
-                RowHeight = 60,
-                //ItemTemplate = new DataTemplate(typeof(EventItemCell))
-            };
+            listView = new EventListView();
             events.Add(new EventItem
             {
                 Name = "Buy ptears`",
@@ -64,28 +60,30 @@ namespace DiscGolfEventDirectory
             {
                 eve.Distance = DistanceBetween(xamarinPost, eve.Coordinates);
             }
+
             events.Sort();
             listView.ItemsSource = null;
             listView.ItemsSource = events;
-            listView.ItemSelected += (sender, e) => {
-                if (e.SelectedItem != null)
-                {
-                    var eventItem = (EventItem)e.SelectedItem;
-                    var eventDetailsPage = new EventDetailsPage();
-                    eventDetailsPage.BindingContext = eventItem;
-                    Navigation.PushAsync(eventDetailsPage);
-                    ((ListView)sender).SelectedItem = null;
-                }
-            };
+            listView.events = events;
 
             var layout = new StackLayout();
+            SearchBar searchBar = new SearchBar();
+            searchBar.Placeholder = "Search";
+            searchBar.TextChanged += (sender, e) => listView.FilterEvents(searchBar.Text);
+            searchBar.SearchButtonPressed += (sender, e) => {
+                listView.FilterEvents(searchBar.Text);
+            };
 
+            layout.Children.Add(searchBar);
             layout.Children.Add(listView);
             layout.VerticalOptions = LayoutOptions.FillAndExpand;
             Content = layout;
+            searchBar.IsVisible = false;
+           
 
             ToolbarItem settings = null;
             ToolbarItem search = null;
+
             if (Device.OS == TargetPlatform.iOS)
             {
                 settings = new ToolbarItem("Settings", null, () => {
@@ -93,15 +91,17 @@ namespace DiscGolfEventDirectory
                     Navigation.PushAsync(settingPage);
                 }, 0, 0);
             }
+
+
+
             if (Device.OS == TargetPlatform.Android)
             { // BUG: Android doesn't support the icon being null
                 settings = new ToolbarItem("Settings", "setting", () => {
                     var settingPage = new SettingPage();
                     Navigation.PushAsync(settingPage);
                 }, 0, 0);
-                search = new ToolbarItem("Search", "setting", () => {
-                    var settingPage = new SettingPage();
-                    Navigation.PushAsync(settingPage);
+                search = new ToolbarItem("Search", "search", () => {
+                    searchBar.IsVisible = !searchBar.IsVisible;
                 }, 0, 0);
             }
 
@@ -110,6 +110,27 @@ namespace DiscGolfEventDirectory
             ToolbarItems.Add(settings);
 
         }
+
+  
+/*
+        public void FilterLocations(string filter)
+        {
+            this.BeginRefresh();
+
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                this.ItemsSource = locations;
+            }
+            else
+            {
+                this.ItemsSource = locations
+                    .Where(x => x.Title.ToLower()
+                   .Contains(filter.ToLower()));
+            }
+
+            this.EndRefresh();
+        }
+        */
         public async Task<Position> getLocation()
         {
             var locator = CrossGeolocator.Current;

@@ -12,12 +12,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ICurrentLocation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EventListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventItemCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventDetailsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventListPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\SettingPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\TestPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />

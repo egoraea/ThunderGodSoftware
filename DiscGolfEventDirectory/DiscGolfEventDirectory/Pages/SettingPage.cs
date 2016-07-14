@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Plugin.Settings;
 
 namespace DiscGolfEventDirectory
 {
@@ -11,6 +12,9 @@ namespace DiscGolfEventDirectory
 	{
 		public SettingPage ()
 		{
+            Title = "Settings";
+
+
 			Content = new StackLayout {
 				Children = {
 					new Label { Text = "Hello ContentPage" }

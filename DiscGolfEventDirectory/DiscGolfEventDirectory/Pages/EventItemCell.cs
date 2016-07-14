@@ -13,7 +13,7 @@ namespace DiscGolfEventDirectory
         {
             var nameLabel = new Label
             {
-                FontSize = 16,
+                FontSize = 24,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.StartAndExpand
             };
@@ -22,7 +22,7 @@ namespace DiscGolfEventDirectory
 
             var dateLabel = new Label
             {
-                FontSize = 10,
+                FontSize = 14,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.StartAndExpand,  
             };
@@ -31,7 +31,7 @@ namespace DiscGolfEventDirectory
 
             var addrLabel = new Label
             {
-                FontSize = 10,
+                FontSize = 12,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.StartAndExpand
             };
@@ -48,37 +48,48 @@ namespace DiscGolfEventDirectory
                 
             };
 
-            //iconLabel.SetBinding(Image.SourceProperty, "Type".ToUpper());
+            var typeLabel = new Label
+            {
+                FontSize = 12,
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalOptions = LayoutOptions.StartAndExpand
+            };
 
+            typeLabel.SetBinding(Label.TextProperty, "Type");
+
+            //iconLabel.SetBinding(Image.SourceProperty, "Type".ToUpper());
+           
             var leftLayout = new StackLayout
             {
-                Padding = new Thickness(0, 10, 20, 10),
+                Padding = new Thickness(0, 0, 20, 0),
                 Orientation = StackOrientation.Vertical,
                 HorizontalOptions = LayoutOptions.StartAndExpand,
-                Children = { nameLabel,dateLabel,addrLabel },
+                Children = { nameLabel,typeLabel},
             };
 
             var distLabel = new Label
             {
+                FontSize = 14,
+
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
             
-            distLabel.SetBinding(Label.TextProperty, "Distance", stringFormat: "{0:F1}");
+            distLabel.SetBinding(Label.TextProperty, "Distance", stringFormat: "{0:F1} miles away");
 
-            var distLayout = new StackLayout {
+            var rightLayout = new StackLayout {
                 Padding = new Thickness(20, 0, 20, 0),
                 Orientation = StackOrientation.Vertical,
                 HorizontalOptions = LayoutOptions.EndAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
-                Children = { distLabel, new Label {Text = "miles away"} }
+                Children = { dateLabel,distLabel }
             };
 
             var layout = new StackLayout
             {
                 Padding = new Thickness(0, 0, 0, 0),
                 Orientation = StackOrientation.Horizontal,
-                Children = { iconLabel, leftLayout, distLayout }
+                Children = { iconLabel, leftLayout, rightLayout }
             };
             View = layout;
         }
