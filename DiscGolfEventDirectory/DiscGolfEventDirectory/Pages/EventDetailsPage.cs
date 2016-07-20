@@ -12,9 +12,14 @@ namespace DiscGolfEventDirectory
 	{
 		public EventDetailsPage()
 		{
-            Geocoder geo = new Geocoder();
-            var location = Location();
-            var eventMap = new Map(new MapSpan(new Position(57,62), 360, 360) );
+            //Geocoder geo = new Geocoder();
+           // var location = Location();
+            var eventMap = new Map(new MapSpan(new Position(57, 62), 30, 30))
+            {
+                HeightRequest = 100,
+                WidthRequest = 960,
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
             eventMap.MapType = MapType.Street;
 
             this.SetBinding(ContentPage.TitleProperty, "Name");

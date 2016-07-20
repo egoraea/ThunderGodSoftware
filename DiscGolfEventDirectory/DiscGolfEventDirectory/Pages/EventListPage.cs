@@ -111,26 +111,38 @@ namespace DiscGolfEventDirectory
 
         }
 
-  
-/*
-        public void FilterLocations(string filter)
+
+        /*
+                public void FilterLocations(string filter)
+                {
+                    this.BeginRefresh();
+
+                    if (string.IsNullOrWhiteSpace(filter))
+                    {
+                        this.ItemsSource = locations;
+                    }
+                    else
+                    {
+                        this.ItemsSource = locations
+                            .Where(x => x.Title.ToLower()
+                           .Contains(filter.ToLower()));
+                    }
+
+                    this.EndRefresh();
+                }
+                */
+        /*protected override void OnAppearing()
         {
-            this.BeginRefresh();
-
-            if (string.IsNullOrWhiteSpace(filter))
+            base.OnAppearing();
+            getLocation().ContinueWith(task =>
             {
-                this.ItemsSource = locations;
-            }
-            else
-            {
-                this.ItemsSource = locations
-                    .Where(x => x.Title.ToLower()
-                   .Contains(filter.ToLower()));
-            }
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    listView.ItemsSource = task.Result;
+                });
+            });
+        }*/
 
-            this.EndRefresh();
-        }
-        */
         public async Task<Position> getLocation()
         {
             var locator = CrossGeolocator.Current;
