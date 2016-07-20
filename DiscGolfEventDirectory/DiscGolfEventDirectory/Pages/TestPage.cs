@@ -18,7 +18,7 @@ namespace DiscGolfEventDirectory
 		public TestPage ()
 		{
             Title = "Test";
-
+            test = "pol";
             databaseTest();
             Title = test;
             ListView listView = new ListView();
@@ -58,6 +58,7 @@ namespace DiscGolfEventDirectory
             var search = context.ScanAsync<Test>(conditions);
            list = await search.GetNextSetAsync();
             await context.SaveAsync(createdBook);
+            this.test = "7";
         }
     }
     [DynamoDBTable("Events")]
