@@ -28,12 +28,12 @@
 	<string>com.yourcompany.DiscGolfEventDirectory</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>CFBundleIconFiles</key>
   <key>NSLocationAlwaysUsageDescription</key>
   <string>Can we use your location</string>
   <key>NSLocationWhenInUseUsageDescription</key>
   <string>We are using your location</string>
-	<array>
+  <key>CFBundleIconFiles</key>
+  <array>
 		<string>Icon-60@2x.png</string>
 		<string>Icon-60@3x.png</string>
 		<string>Icon-76.png</string>

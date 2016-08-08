@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms.Maps;
+using Amazon.DynamoDBv2.DataModel;
 //using SQLite;
 
 namespace DiscGolfEventDirectory
 {
+    [DynamoDBTable("")]
     class EventItem:IComparable
     {
         public EventItem()
@@ -26,6 +28,7 @@ namespace DiscGolfEventDirectory
 
         public double Distance { get; set; }
         public string Information { get; set; }
+        public string Website { get; set; }
 
         public int CompareTo(Object obj)
         {

@@ -12,8 +12,8 @@ namespace DiscGolfEventDirectory
 		public App ()
 		{
             Resources = new ResourceDictionary();
-            Resources.Add("primaryGreen", Color.FromHex("91CA47"));
-            Resources.Add("primaryDarkGreen", Color.FromHex("6FA22E"));
+            Resources.Add("primaryGreen", Color.FromHex("11CA47"));
+            Resources.Add("primaryDarkGreen", Color.FromHex("6EA22E"));
 
             var nav = new NavigationPage(new TestPage());
             nav.BarBackgroundColor = (Color)App.Current.Resources["primaryGreen"];

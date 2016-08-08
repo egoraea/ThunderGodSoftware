@@ -8,60 +8,88 @@ using Amazon;
 using Amazon.CognitoIdentity;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.Model;
+using Amazon.DynamoDBv2.DocumentModel;
 namespace DiscGolfEventDirectory
 {
 	public class TestPage : ContentPage
 	{
-        List<Test> list;
+
+        List<Contact> list = new List<Contact>();
+        ListView listView = new ListView();
         string test;
 		public TestPage ()
 		{
+            try { 
+            Console.Out.WriteLine("Hello");
+            listView.IsPullToRefreshEnabled = true;
+                listView.Refreshing += (sender, e) =>
+                {
+                    CognitoAWSCredentials credentials = new CognitoAWSCredentials("us-east-1:18ce3913-3574-441d-94f9-10a8f07ed105", RegionEndpoint.USEast1);
+                    var client = new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast1);
+                    DynamoDBContext context = new DynamoDBContext(client);
+                    List<ScanCondition> conditions = new List<ScanCondition>();
+                    var search = context.ScanAsync<Contact>(conditions);
+                    search.GetNextSetAsync().ContinueWith(task =>
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            listView.ItemsSource = task.Result;
+                        });
+                    });
+                };
             Title = "Test";
             test = "pol";
-            databaseTest();
+            databaseTest().ContinueWith(task =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    try
+                    {
+                        listView.ItemsSource = task.Result;
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                });
+            }); ;
             Title = test;
-            ListView listView = new ListView();
-            listView.ItemsSource = list;
 			Content = new StackLayout {
 				Children = {
 					listView
 				}
 			};
-		}
+        }
+            catch (Exception e){
+                Title = "error";
+            }
+}
 
 
-        public async void databaseTest()
+
+        public Task<List<Contact>> databaseTest()
         {
-            CognitoAWSCredentials credentials = new CognitoAWSCredentials(
-    "us-east-1_ySCFNqvfA", // Your identity pool ID
-    RegionEndpoint.USEast1 // Region
-);
+            Console.Out.WriteLine("Hello");
 
-            AmazonDynamoDBConfig config = new AmazonDynamoDBConfig();
-
-            var client = new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast1);
-            DynamoDBContext context = new DynamoDBContext(client);
-            Dictionary<string, AttributeValue> values = new Dictionary<string, AttributeValue>();
-            var get = context.CreateBatchGet<Test>();
-            Test retrievedBook = await context.LoadAsync<Test>(1);
-            test = retrievedBook.date;
-            await get.ExecuteAsync();
-            list = get.Results;
-            Test createdBook = new Test
+            try
             {
-                eventId = 5,
-                date = "safg"
-            };
-            List<ScanCondition> conditions = new List<ScanCondition>();
-            context.ScanAsync<Test>(conditions);
-            var search = context.ScanAsync<Test>(conditions);
-           list = await search.GetNextSetAsync();
-            await context.SaveAsync(createdBook);
-            this.test = "7";
+                CognitoAWSCredentials credentials = new CognitoAWSCredentials("us-east-1:18ce3913-3574-441d-94f9-10a8f07ed105", RegionEndpoint.USEast1);
+                var client = new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast1);
+                DynamoDBContext context = new DynamoDBContext(client);
+                List<ScanCondition> conditions = new List<ScanCondition>();
+                object[] one =new object[1];
+                one[0] = 1;
+                conditions.Add(new ScanCondition("HomePhoneNumber",ScanOperator.GreaterThan,one));
+                var search = context.ScanAsync<Contact>(conditions);
+                return search.GetNextSetAsync();
+           }
+            catch (Exception exception){
+                Title = "error";
+            }
+            return null;
         }
     }
-    [DynamoDBTable("Events")]
+    [DynamoDBTable("discgolfdirectory-mobilehub-1705368074-Events")]
     public class Test
     {
         [DynamoDBHashKey]
@@ -69,5 +97,33 @@ namespace DiscGolfEventDirectory
 
         [DynamoDBRangeKey]
         public string date { get; set; }
+    }
+
+    [DynamoDBTable("ContactList2")]
+    public class Contact
+    {
+        [DynamoDBHashKey]
+        public string Id { get; set; }
+
+        [DynamoDBRangeKey]
+        public string UserId { get; set; }
+
+        [DynamoDBProperty]
+        public string FirstName { get; set; }
+
+        [DynamoDBProperty]
+        public string LastName { get; set; }
+
+        [DynamoDBProperty]
+        public int HomePhoneNumber { get; set; }
+
+        [DynamoDBProperty]
+        public int WorkPhoneNumber { get; set; }
+
+        [DynamoDBProperty]
+        public int MobileNumber { get; set; }
+
+        [DynamoDBProperty]
+        public string EmailAddress { get; set; }
     }
 }

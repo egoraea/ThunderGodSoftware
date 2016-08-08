@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ICurrentLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ILogging.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventItemCell.cs" />

@@ -90,6 +90,9 @@ namespace DiscGolfEventDirectory
                     var settingPage = new SettingPage();
                     Navigation.PushAsync(settingPage);
                 }, 0, 0);
+                search = new ToolbarItem("Search", null, () => {
+                    searchBar.IsVisible = !searchBar.IsVisible;
+                }, 0, 0);
             }
 
 

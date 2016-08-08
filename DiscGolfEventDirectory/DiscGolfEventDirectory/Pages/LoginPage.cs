@@ -13,7 +13,7 @@ namespace DiscGolfEventDirectory {
 		{
             Button loginButton = new Button()
             {
-                Text = "Login, Loser",
+                Text = "Login",
                 HorizontalOptions = LayoutOptions.Center
             };
             loginButton.Clicked += (sender, e) => {
