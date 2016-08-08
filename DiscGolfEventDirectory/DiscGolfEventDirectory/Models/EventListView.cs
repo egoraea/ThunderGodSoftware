@@ -22,6 +22,7 @@ namespace DiscGolfEventDirectory
             this.Refreshing += (sender, e) =>
             {
 
+                this.IsRefreshing = false;
             };
  
              this.ItemSelected += (sender, e) => {

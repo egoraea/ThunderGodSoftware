@@ -7,28 +7,59 @@ using Amazon.DynamoDBv2.DataModel;
 
 namespace DiscGolfEventDirectory
 {
-    [DynamoDBTable("")]
-    class EventItem:IComparable
+    [DynamoDBTable("DGschedulerEvents")]
+    class EventItem : IComparable
     {
         public EventItem()
         {
         }
-  //      [PrimaryKey, AutoIncrement]
-        public int id { get; set; }
 
+        [DynamoDBHashKey]
+        public int Id { get; set; }
+
+        [DynamoDBProperty]
         public string Name { get; set; }
 
-        public string Type { get; set; }
+        [DynamoDBRangeKey]
+        public string EventType { get; set; }
 
-        public DateTime Date { get; set; }
+        [DynamoDBProperty]
+        public string DayOfWeek { get; set; }
 
-        public string Address { get; set; }
+        [DynamoDBProperty]
+        public string EndDate { get; set; }
 
-        public Position Coordinates { get; set; }
+        [DynamoDBProperty]
+        public string EventRegistrationUrl { get; set; }
 
+        [DynamoDBProperty]
+        public string EventUrl { get; set; }
+
+        [DynamoDBProperty]
+        public string Frequency { get; set; }
+
+        [DynamoDBProperty]
+        public string Location { get; set; }
+
+        [DynamoDBProperty]
+        public string Notes { get; set; }
+
+        [DynamoDBProperty]
+        public string StartDate { get; set; }
+
+        [DynamoDBProperty]
+        public string TD { get; set; }
+
+        [DynamoDBProperty]
+        public string TdEmail { get; set; }
+
+        [DynamoDBProperty]
+        public string TdphhoneNumber { get; set; }
+
+        [DynamoDBProperty]
+        public string Time { get; set; }
         public double Distance { get; set; }
-        public string Information { get; set; }
-        public string Website { get; set; }
+
 
         public int CompareTo(Object obj)
         {

@@ -35,7 +35,7 @@ namespace DiscGolfEventDirectory
             NavigationPage.SetHasNavigationBar(this, true);
 
             listView = new EventListView();
-            events.Add(new EventItem
+           /* events.Add(new EventItem
             {
                 Name = "Buy ptears`",
                 Address = "123 Apple STreet",
@@ -54,11 +54,11 @@ namespace DiscGolfEventDirectory
                 Type = "league.png",
                 Distance = 4.3,
                 Coordinates = new Position(52.2, 35.0)
-            });
+            });*/
             Position xamarinPost = new Position(12,14);
             foreach (EventItem eve in events)
             {
-                eve.Distance = DistanceBetween(xamarinPost, eve.Coordinates);
+               // eve.Distance = DistanceBetween(xamarinPost, eve.Coordinates);
             }
 
             events.Sort();

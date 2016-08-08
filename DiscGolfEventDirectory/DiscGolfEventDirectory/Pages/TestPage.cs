@@ -36,6 +36,7 @@ namespace DiscGolfEventDirectory
                             listView.ItemsSource = task.Result;
                         });
                     });
+                    listView.IsRefreshing = false;
                 };
             Title = "Test";
             test = "pol";
@@ -78,8 +79,8 @@ namespace DiscGolfEventDirectory
                 DynamoDBContext context = new DynamoDBContext(client);
                 List<ScanCondition> conditions = new List<ScanCondition>();
                 object[] one =new object[1];
-                one[0] = 1;
-                conditions.Add(new ScanCondition("HomePhoneNumber",ScanOperator.GreaterThan,one));
+                one[0] = "1";
+                conditions.Add(new ScanCondition("Id",ScanOperator.GreaterThan,one));
                 var search = context.ScanAsync<Contact>(conditions);
                 return search.GetNextSetAsync();
            }
