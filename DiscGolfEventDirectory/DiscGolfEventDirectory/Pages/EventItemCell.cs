@@ -11,7 +11,7 @@ namespace DiscGolfEventDirectory
     {
         public EventItemCell()
         {
-            var nameLabel = new Label
+            Label nameLabel = new Label
             {
                 FontSize = 24,
                 VerticalTextAlignment = TextAlignment.Center,
@@ -20,25 +20,25 @@ namespace DiscGolfEventDirectory
 
             nameLabel.SetBinding(Label.TextProperty, "Name");
 
-            var dateLabel = new Label
+            Label dateLabel = new Label
             {
                 FontSize = 14,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.StartAndExpand,  
             };
 
-            dateLabel.SetBinding(Label.TextProperty, "Date", stringFormat: "{0:h:mm tt MM/dd/yy}");
+            dateLabel.SetBinding(Label.TextProperty, "StartDate", stringFormat: "{0:h:mm tt MM/dd/yy}");
 
-            var addrLabel = new Label
+            Label addrLabel = new Label
             {
                 FontSize = 12,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.StartAndExpand
             };
 
-            addrLabel.SetBinding(Label.TextProperty, "Address");
+            addrLabel.SetBinding(Label.TextProperty, "Location");
 
-            var iconLabel = new Image
+            Image iconLabel = new Image
             {
                 HeightRequest = 60,
                 WidthRequest = 60,
@@ -48,18 +48,18 @@ namespace DiscGolfEventDirectory
                 
             };
 
-            var typeLabel = new Label
+            Label typeLabel = new Label
             {
                 FontSize = 12,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.StartAndExpand
             };
 
-            typeLabel.SetBinding(Label.TextProperty, "Type");
+            typeLabel.SetBinding(Label.TextProperty, "EventType");
 
             //iconLabel.SetBinding(Image.SourceProperty, "Type".ToUpper());
            
-            var leftLayout = new StackLayout
+            StackLayout leftLayout = new StackLayout
             {
                 Padding = new Thickness(0, 0, 20, 0),
                 Orientation = StackOrientation.Vertical,
@@ -67,7 +67,7 @@ namespace DiscGolfEventDirectory
                 Children = { nameLabel,typeLabel},
             };
 
-            var distLabel = new Label
+            Label distLabel = new Label
             {
                 FontSize = 14,
 
@@ -77,7 +77,7 @@ namespace DiscGolfEventDirectory
             
             distLabel.SetBinding(Label.TextProperty, "Distance", stringFormat: "{0:F1} miles away");
 
-            var rightLayout = new StackLayout {
+            StackLayout rightLayout = new StackLayout {
                 Padding = new Thickness(20, 0, 20, 0),
                 Orientation = StackOrientation.Vertical,
                 HorizontalOptions = LayoutOptions.EndAndExpand,
@@ -85,7 +85,7 @@ namespace DiscGolfEventDirectory
                 Children = { dateLabel,distLabel }
             };
 
-            var layout = new StackLayout
+            StackLayout layout = new StackLayout
             {
                 Padding = new Thickness(0, 0, 0, 0),
                 Orientation = StackOrientation.Horizontal,

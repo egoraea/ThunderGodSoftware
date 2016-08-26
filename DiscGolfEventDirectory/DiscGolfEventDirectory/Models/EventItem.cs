@@ -54,7 +54,7 @@ namespace DiscGolfEventDirectory
         public string TdEmail { get; set; }
 
         [DynamoDBProperty]
-        public string TdphhoneNumber { get; set; }
+        public string TdPhoneNumber { get; set; }
 
         [DynamoDBProperty]
         public string Time { get; set; }

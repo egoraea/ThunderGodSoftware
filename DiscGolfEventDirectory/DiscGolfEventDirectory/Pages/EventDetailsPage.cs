@@ -19,8 +19,6 @@ namespace DiscGolfEventDirectory
             {
                 eventMap = new Map(new MapSpan(new Position(57, 62), 30, 30))
                 {
-                    HeightRequest = 100,
-                    WidthRequest = 960,
                     VerticalOptions = LayoutOptions.FillAndExpand
                 };
                 eventMap.MapType = MapType.Street;
@@ -33,35 +31,66 @@ namespace DiscGolfEventDirectory
 
             NavigationPage.SetHasNavigationBar(this, true);
 
-            var nameDetails = new Label()
+            Label nameDetails = new Label()
             {
                 FontAttributes = FontAttributes.Bold
             };
             nameDetails.SetBinding(Label.TextProperty, "Name");
 
 
-            var typeDetails = new Label();
-            typeDetails.SetBinding(Label.TextProperty, "Type");
+            Label typeDetails = new Label();
+            typeDetails.SetBinding(Label.TextProperty, "EventType");
  
-            var dataDetails = new Label();
-            dataDetails.SetBinding(Label.TextProperty, "Date");
+            
+            Label dateDetails = new Label();
+            dateDetails.SetBinding(Label.TextProperty, "StartDate");
 
-            var addrDetails = new Label();
-            addrDetails.SetBinding(Label.TextProperty, "Address");
+            Label endDetails = new Label();
+            endDetails.SetBinding(Label.TextProperty, "EndDate");
 
-            var infoDetails = new Label();
-            infoDetails.SetBinding(Label.TextProperty, "Information");
+            Label dayDetails = new Label();
+            dayDetails.SetBinding(Label.TextProperty, "DayOfWeek");
 
-            var linkDetails = new Label();
-            linkDetails.SetBinding(Label.TextProperty, "Website");
+            Label timeDetails = new Label();
+            timeDetails.SetBinding(Label.TextProperty, "Time");
 
-            var mapLink = new Label();
+            Label addrDetails = new Label();
+            addrDetails.SetBinding(Label.TextProperty, "Location");
+
+            Label infoDetails = new Label();
+            infoDetails.SetBinding(Label.TextProperty, "Notes");
+
+            Label registrationDetails = new Label();
+            registrationDetails.SetBinding(Label.TextProperty, "EventRegistrationUrl");
+
+            Label frequencyDetails = new Label();
+            frequencyDetails.SetBinding(Label.TextProperty, "Frequency");
+
+            Label linkDetails = new Label();
+            linkDetails.SetBinding(Label.TextProperty, "EventUrl");
+
+            Label TDName = new Label();
+            TDName.SetBinding(Label.TextProperty, "TD");
+
+            Label TdEmail = new Label();
+            TdEmail.SetBinding(Label.TextProperty, "TdEmail");
+
+            Label TdPhoneNumber = new Label();
+            TdPhoneNumber.SetBinding(Label.TextProperty, "TdPhoneNumber");
+
+            ToolbarItem edit = new ToolbarItem("Edit", "edit", () => {
+                EventEditPage settingPage = new EventEditPage();
+                Navigation.PushAsync(settingPage);
+            }, 0, 0);
+
+            ToolbarItems.Add(edit);
+            Label mapLink = new Label();
             Content = new StackLayout {
 				Children = {
                     eventMap,
 					nameDetails,
                     typeDetails,
-                    dataDetails,
+                    dateDetails,
                     addrDetails,
                     infoDetails,
                     linkDetails,
@@ -70,21 +99,5 @@ namespace DiscGolfEventDirectory
 			};
 		}
 
-        public async Task<IEnumerable<Position>> Location()
-        {
-            Geocoder geo = new Geocoder();
-            IEnumerable<Position> location = await geo.GetPositionsForAddressAsync("615 Oyster Shell Ct Missouri City, Texas 77459");
-            return location;
-        }
-
-        public static double DistanceBetween(Position a, Position b)
-        {
-            double d = Math.Acos(
-               (Math.Sin(a.Latitude) * Math.Sin(b.Latitude)) +
-               (Math.Cos(a.Latitude) * Math.Cos(b.Latitude))
-               * Math.Cos(b.Longitude - a.Longitude));
-
-            return 6378137 * d;
-        }
     }
 }

@@ -35,26 +35,18 @@ namespace DiscGolfEventDirectory
             NavigationPage.SetHasNavigationBar(this, true);
 
             listView = new EventListView();
-           /* events.Add(new EventItem
+            events.Add(new EventItem
             {
                 Name = "Buy ptears`",
-                Address = "123 Apple STreet",
-                Date = new DateTime(1993, 12, 12),
-                Information = "You buy pears with your discs",
-                Type = "mini.png",
                 Distance = 3.4,
-                Coordinates = new Position(32.2, 45.0)
+
             });
             events.Add(new EventItem
             {
                 Name = "Buy not pears`",
-                Address = "123 Apple STreet",
-                Date = new DateTime(1993, 12, 12),
-                Information = "You buy pears with your discs",
-                Type = "league.png",
                 Distance = 4.3,
-                Coordinates = new Position(52.2, 35.0)
-            });*/
+
+            });
             Position xamarinPost = new Position(12,14);
             foreach (EventItem eve in events)
             {
@@ -66,7 +58,7 @@ namespace DiscGolfEventDirectory
             listView.ItemsSource = events;
             listView.events = events;
 
-            var layout = new StackLayout();
+            StackLayout layout = new StackLayout();
             SearchBar searchBar = new SearchBar();
             searchBar.Placeholder = "Search";
             searchBar.TextChanged += (sender, e) => listView.FilterEvents(searchBar.Text);
@@ -87,7 +79,7 @@ namespace DiscGolfEventDirectory
             if (Device.OS == TargetPlatform.iOS)
             {
                 settings = new ToolbarItem("Settings", null, () => {
-                    var settingPage = new SettingPage();
+                    SettingPage settingPage = new SettingPage();
                     Navigation.PushAsync(settingPage);
                 }, 0, 0);
                 search = new ToolbarItem("Search", null, () => {
@@ -100,7 +92,7 @@ namespace DiscGolfEventDirectory
             if (Device.OS == TargetPlatform.Android)
             { // BUG: Android doesn't support the icon being null
                 settings = new ToolbarItem("Settings", "setting", () => {
-                    var settingPage = new SettingPage();
+                    SettingPage settingPage = new SettingPage();
                     Navigation.PushAsync(settingPage);
                 }, 0, 0);
                 search = new ToolbarItem("Search", "search", () => {

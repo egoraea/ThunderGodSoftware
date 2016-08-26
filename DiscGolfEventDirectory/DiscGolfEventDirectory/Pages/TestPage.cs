@@ -19,6 +19,40 @@ namespace DiscGolfEventDirectory
         string test;
 		public TestPage ()
 		{
+            Position post = new Position();
+            double latitude = 0;
+            double longitude = 0;
+            Geocoder geo = new Geocoder();
+            CrossGeolocator loca = new CrossGeolocator();
+            GeolocatorImplementation locator = new GeolocatorImplementation();
+            Map eventMap;
+            post = new Position(latitude, longitude);
+            try
+            {
+                eventMap = new Map(new MapSpan(post, 5, 5))
+                {
+                    HeightRequest = 100,
+                    WidthRequest = 960,
+                    VerticalOptions = LayoutOptions.FillAndExpand
+                };
+                eventMap.MapType = MapType.Street;
+            }
+            catch
+            {
+                eventMap = new Map();
+            }
+            locator.GetPositionAsync().ContinueWith(task => 
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    latitude = task.Result.Latitude;
+                longitude = task.Result.Longitude;
+                    post = new Position(latitude, longitude);
+                    eventMap.MoveToRegion(new MapSpan(post, 5, 5));
+                });
+            });
+
+          
             try { 
             Console.Out.WriteLine("Hello");
             listView.IsPullToRefreshEnabled = true;
@@ -57,6 +91,7 @@ namespace DiscGolfEventDirectory
             Title = test;
 			Content = new StackLayout {
 				Children = {
+                    eventMap,
 					listView
 				}
 			};

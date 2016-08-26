@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ILogging.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventListView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\EventEditPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventItemCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventDetailsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\EventListPage.cs" />

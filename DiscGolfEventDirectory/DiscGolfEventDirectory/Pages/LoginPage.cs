@@ -17,7 +17,7 @@ namespace DiscGolfEventDirectory {
                 HorizontalOptions = LayoutOptions.Center
             };
             loginButton.Clicked += (sender, e) => {
-                var eventListPage = new EventListPage();
+                EventListPage eventListPage = new EventListPage();
                 Navigation.PushAsync(eventListPage);
                 Navigation.RemovePage(this);
 

@@ -21,15 +21,27 @@ namespace DiscGolfEventDirectory
 
             this.Refreshing += (sender, e) =>
             {
-
+                CognitoAWSCredentials credentials = new CognitoAWSCredentials("us-east-1:18ce3913-3574-441d-94f9-10a8f07ed105", RegionEndpoint.USEast1);
+                AmazonDynamoDBClient client = new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast1);
+                DynamoDBContext context = new DynamoDBContext(client);
+                List<ScanCondition> conditions = new List<ScanCondition>();
+                var search = context.ScanAsync<EventItem>(conditions);
+                search.GetNextSetAsync().ContinueWith(task =>
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        this.ItemsSource = task.Result;
+                        events = task.Result;
+                    });
+                });
                 this.IsRefreshing = false;
             };
  
              this.ItemSelected += (sender, e) => {
                 if (e.SelectedItem != null)
                 {
-                    var eventItem = (EventItem)e.SelectedItem;
-                    var eventDetailsPage = new EventDetailsPage();
+                    EventItem eventItem = (EventItem)e.SelectedItem;
+                    EventDetailsPage eventDetailsPage = new EventDetailsPage();
                     eventDetailsPage.BindingContext = eventItem;
                     Navigation.PushAsync(eventDetailsPage);
                     ((ListView)sender).SelectedItem = null;
